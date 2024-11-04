@@ -1,0 +1,20 @@
+name : Deplot
+on :
+ push :
+   [main]
+
+ jobs : 
+  Deploy :
+   name : "deploy to EC2"
+   runs_on : ubuntu-latest
+
+   steps : 
+     - uses: action/checkout@v2
+     - name : install script
+       env: 
+        PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+       
+       run: |
+         echo "PRIVATE_KEY" > uthman.pem && chmod 600 uthman.pem
+         echo "conncting to the box and installing git"
+         ssh -o StrictHostKeyChecking -i uthman.pem ec2-user@13.40.31.31 'sudo yum install git -y'
