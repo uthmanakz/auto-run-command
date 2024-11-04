@@ -1,21 +1,21 @@
 name : Deploy
 on :
- push :
-  branches: [main]
+push :
+ branches: [main]
   
 
- jobs : 
+jobs : 
   Deploy :
    name : "deploy to EC2"
    runs_on : ubuntu-latest
 
-   steps : 
-     - uses: action/checkout@v2
-     - name : install script
-       env: 
-        PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  steps : 
+    - uses: action/checkout@v2
+    - name : install script
+      env: 
+      PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
        
-       run: |
-         echo "PRIVATE_KEY" > uthman.pem && chmod 600 uthman.pem
-         echo "conncting to the box and installing git"
-         ssh -o StrictHostKeyChecking=no -i uthman.pem ec2-user@13.40.31.31 'sudo yum install git -y'
+      run: |
+        echo "PRIVATE_KEY" > uthman.pem && chmod 600 uthman.pem
+        echo "conncting to the box and installing git"
+        ssh -o StrictHostKeyChecking=no -i uthman.pem ec2-user@13.40.31.31 'sudo yum install git -y'
