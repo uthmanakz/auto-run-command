@@ -17,5 +17,11 @@ jobs :
        
       run: |
         echo "$PRIVATE_KEY" > uthman.pem && chmod 600 uthman.pem
+        echo " copy a README file to target node depl"
+        scp -o StrictHostKeyChecking=no -i uthman.pem README.md ec2-user@13.40.31.31:~/
         echo "conncting to the box and installing git"
-        ssh -o StrictHostKeyChecking=no -i uthman.pem ec2-user@13.40.31.31 'sudo yum install git -y'
+        ssh -o StrictHostKeyChecking=no -i uthman.pem ec2-user@13.40.31.31 '
+        sudo yum install git -y
+        sudo yum install npm -y
+        sudo service nginx start
+        '
