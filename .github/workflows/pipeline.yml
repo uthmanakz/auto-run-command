@@ -1,4 +1,4 @@
-name : Deplot
+name : Deploy
 on :
  push :
    [main]
@@ -17,4 +17,4 @@ on :
        run: |
          echo "PRIVATE_KEY" > uthman.pem && chmod 600 uthman.pem
          echo "conncting to the box and installing git"
-         ssh -o StrictHostKeyChecking -i uthman.pem ec2-user@13.40.31.31 'sudo yum install git -y'
+         ssh -o StrictHostKeyChecking=no -i uthman.pem ec2-user@13.40.31.31 'sudo yum install git -y'
