@@ -16,6 +16,6 @@ jobs :
        PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
        
       run: |
-        echo "PRIVATE_KEY" > uthman.pem && chmod 600 uthman.pem
+        echo "$PRIVATE_KEY" > uthman.pem && chmod 600 uthman.pem
         echo "conncting to the box and installing git"
         ssh -o StrictHostKeyChecking=no -i uthman.pem ec2-user@13.40.31.31 'sudo yum install git -y'
