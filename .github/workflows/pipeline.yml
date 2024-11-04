@@ -22,6 +22,6 @@ jobs :
         echo "conncting to the box and installing git"
         ssh -o StrictHostKeyChecking=no -i uthman.pem ec2-user@13.40.31.31 '
         sudo yum install git -y
-        sudo yum install npm -y
+        sudo yum install nginx -y
         sudo service nginx start
         '
